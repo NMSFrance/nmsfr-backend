@@ -3,7 +3,7 @@ nmsbackend:
   ports:
     - "80:80"
   volumes:
-    - .:/var/www
+    - /var/nms:/var/www/nmsfr
   links:
     - database
 phpmyadmin:
