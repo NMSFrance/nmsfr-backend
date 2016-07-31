@@ -28,4 +28,5 @@
 
   // Run app
   $app->run();
+
 ?>
