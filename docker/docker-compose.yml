@@ -1,9 +1,9 @@
 nmsbackend:
-  build: container
+  build: ./container/
   ports:
     - "80:80"
   volumes:
-    - /var/nmsfr:/var/www/nmsfr
+    - /var/nmsfr:/var/www/html
   links:
     - database
 phpmyadmin:
