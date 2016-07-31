@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e003c2cfe7485a7244dedf0965bcf2ce",
-    "content-hash": "a8c1299f2e01133e3ce680db419137cc",
+    "hash": "1441817aa88c34e7b49933084f34d053",
+    "content-hash": "0e0c4560484b087ffa62b8f4812c6fa7",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -100,52 +100,6 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
-        },
-        {
-            "name": "entomb/slim-json-api",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/entomb/slim-json-api.git",
-                "reference": "c11e001ab98e7df4dcb7b096fb1c9506d21c7e16"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/entomb/slim-json-api/zipball/c11e001ab98e7df4dcb7b096fb1c9506d21c7e16",
-                "reference": "c11e001ab98e7df4dcb7b096fb1c9506d21c7e16",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "jsonAPI/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonathan Tavares",
-                    "email": "the.entomb@gmail.com",
-                    "homepage": "https://github.com/entomb",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Slim extension to implement fast JSON API's",
-            "homepage": "https://github.com/entomb/slim-json-api",
-            "keywords": [
-                "api",
-                "json",
-                "middleware",
-                "slim",
-                "view"
-            ],
-            "time": "2016-06-13 18:16:16"
         },
         {
             "name": "illuminate/container",
@@ -943,9 +897,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "entomb/slim-json-api": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
