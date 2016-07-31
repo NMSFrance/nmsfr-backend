@@ -6,3 +6,5 @@
 !bin/symfony_requirements
 /vendor/
 /logs/*
+/.idea
+.idea
