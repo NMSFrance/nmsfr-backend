@@ -42,5 +42,8 @@ mount -t vboxsf nmsfr /var/nmsfr
 - Aller dans le dossier du projet `nmsfr-backend` avec un shell
 - `cd docker`
 - `docker-compose build && docker-compose up -d`
+- `docker exec -it docker_nmsfrbackend_1 /bin/bash`
+- `php /usr/local/bin/composer.phar update`
+- `exit`
 
 Les containeurs sont maintenant démarrés.
