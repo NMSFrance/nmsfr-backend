@@ -9,5 +9,3 @@ RUN a2enmod rewrite
 RUN cd /usr/local/bin/ && curl -s https://getcomposer.org/installer | php
 
 WORKDIR /var/www/nmsfr
-
-CMD ["php", "/usr/local/bin/composer.phar", "update"]
