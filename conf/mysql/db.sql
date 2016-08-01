@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.2:3306
--- Generation Time: Jul 31, 2016 at 10:27 PM
+-- Generation Time: Aug 01, 2016 at 06:39 PM
 -- Server version: 5.5.50
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `nmsfrance`
 --
+CREATE DATABASE IF NOT EXISTS `nmsfrance` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `nmsfrance`;
 
 -- --------------------------------------------------------
 
@@ -111,8 +113,8 @@ ALTER TABLE `user`
 -- Constraints for table `publication`
 --
 ALTER TABLE `publication`
-  ADD CONSTRAINT `fk_file` FOREIGN KEY (`file`) REFERENCES `file` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_author` FOREIGN KEY (`author`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fk_author` FOREIGN KEY (`author`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk_file` FOREIGN KEY (`file`) REFERENCES `file` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -45,5 +45,6 @@ mount -t vboxsf nmsfr /var/nmsfr
 - `docker exec -it docker_nmsfrbackend_1 /bin/bash`
 - `php /usr/local/bin/composer.phar update`
 - `exit`
+- `docker exec -i docker_database_1 mysql -uroot -proot < ./conf/mysql/db.sql`
 
 Les containeurs sont maintenant démarrés.
