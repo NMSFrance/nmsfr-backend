@@ -17,6 +17,6 @@
     "slim/php-view": "^2.0",
     "illuminate/database": "^5.1",
     "monolog/monolog": "^1.17",
-    "firebase/php-jwt" : "^4.0"
+    "firebase/php-jwt" : "4.*"
   }
 }

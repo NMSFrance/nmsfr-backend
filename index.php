@@ -20,6 +20,9 @@
   // Set up dependencies
   require __DIR__ . '/src/dependencies.php';
 
+  // Register Tools Function
+  require __DIR__ . 'src/tools/container.php';
+
   // Register middleware
   require __DIR__ . '/src/middleware.php';
 
