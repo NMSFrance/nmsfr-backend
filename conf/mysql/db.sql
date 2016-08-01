@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.2:3306
--- Generation Time: Aug 01, 2016 at 07:26 PM
+-- Generation Time: Aug 01, 2016 at 07:29 PM
 -- Server version: 5.5.50
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `nmsfrance`
 --
+CREATE DATABASE IF NOT EXISTS `nmsfrance` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `nmsfrance`;
 
 -- --------------------------------------------------------
 
