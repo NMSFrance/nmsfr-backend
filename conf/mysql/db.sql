@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.2:3306
--- Generation Time: Aug 01, 2016 at 06:39 PM
+-- Generation Time: Aug 01, 2016 at 07:26 PM
 -- Server version: 5.5.50
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `nmsfrance`
 --
-CREATE DATABASE IF NOT EXISTS `nmsfrance` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `nmsfrance`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +26,7 @@ USE `nmsfrance`;
 -- Table structure for table `file`
 --
 
+DROP TABLE IF EXISTS `file`;
 CREATE TABLE `file` (
   `id` varchar(50) NOT NULL,
   `filename` varchar(100) NOT NULL,
@@ -37,19 +36,32 @@ CREATE TABLE `file` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `like`
+--
+
+DROP TABLE IF EXISTS `like`;
+CREATE TABLE `like` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `publication_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `publication`
 --
 
+DROP TABLE IF EXISTS `publication`;
 CREATE TABLE `publication` (
   `id` int(11) NOT NULL,
-  `type` enum('IMAGE','VIDEO_EMBED','') NOT NULL,
+  `type` enum('IMAGE','VIDEO_EMBED') NOT NULL,
   `file` varchar(50) DEFAULT NULL,
   `title` varchar(35) NOT NULL,
-  `content` varchar(250) NOT NULL,
+  `description` varchar(250) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_at` timestamp NULL DEFAULT NULL,
-  `author` int(11) NOT NULL,
-  `likes` int(11) NOT NULL DEFAULT '0'
+  `author` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -58,11 +70,15 @@ CREATE TABLE `publication` (
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
-  `description` varchar(75) DEFAULT NULL
+  `description` varchar(75) DEFAULT NULL,
+  `password` varchar(100) NOT NULL,
+  `_s` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -74,6 +90,14 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `file`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `like`
+--
+ALTER TABLE `like`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `publication_id` (`publication_id`);
 
 --
 -- Indexes for table `publication`
@@ -96,6 +120,11 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `like`
+--
+ALTER TABLE `like`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
@@ -113,8 +142,15 @@ ALTER TABLE `user`
 -- Constraints for table `publication`
 --
 ALTER TABLE `publication`
+  ADD CONSTRAINT `fk_like_publication` FOREIGN KEY (`id`) REFERENCES `like` (`publication_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_author` FOREIGN KEY (`author`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fk_file` FOREIGN KEY (`file`) REFERENCES `file` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `fk_like_user` FOREIGN KEY (`id`) REFERENCES `like` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
