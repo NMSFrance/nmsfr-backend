@@ -14,6 +14,23 @@ return [
       'name' => 'slim-app',
       'path' => __DIR__ . '/../logs/app.log',
     ],
+
+    'determineRouteBeforeAppMiddleware' => false,
+    // Eloquent Configuration DataBase
+    'db' => [
+      'driver' => 'mysql',
+      'host' => 'localhost',
+      'database' => 'nmsfrance',
+      'username' => 'root',
+      'password' => 'root',
+      'charset'   => 'utf8',
+      'collation' => 'utf8_unicode_ci',
+      'prefix'    => '',
+    ],
+    //Set path to Full picture
+    'fullPath' => '/tmp/full/',
+    //Set path to Thumbnail picture
+    'thumbPath' => '/tmp/thumbnail/'
   ],
 ];
 ?>
