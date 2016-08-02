@@ -7,10 +7,6 @@
  */
 
 // Get the publication from ID
-$app->get('/publication/{id}', function ($request, $response, $args) {
-    $id = $request->getAttribute('id');
-    $data = array('message' => "Publication ID : $id", 'time' => time());
-    return $response->withJson($data, 200);
-});
+$app->get('/publication/{id}', '\Publication:get');
 
 ?>
