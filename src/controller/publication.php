@@ -1,6 +1,6 @@
 <?php
-namespace src\controller;
 
+use Interop\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface as Response;
  * Date: 01/08/2016
  * Time: 23:10
  */
-class publication
+class Publication
 {
   /**
    * @var
@@ -24,7 +24,7 @@ class publication
   public function __construct(ContainerInterface $ci)
   {
     $this->ci = $ci;
-    $this->table = $this->get('db')->table('publication');
+    $this->table = $this->ci->get('db')->table('publication');
   }
 
   public function get(Request $request, Response $response, $args)
