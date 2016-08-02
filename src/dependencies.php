@@ -27,4 +27,8 @@ $container['db'] = function ($container) {
 
   return $capsule;
 };
+
+$container['Publication'] = function($c) {
+  return new \Publication($c);
+}
 ?>

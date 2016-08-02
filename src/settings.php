@@ -19,7 +19,7 @@ return [
     // Eloquent Configuration DataBase
     'db' => [
       'driver' => 'mysql',
-      'host' => 'localhost',
+      'host' => '192.168.99.100',
       'database' => 'nmsfrance',
       'username' => 'root',
       'password' => 'root',
