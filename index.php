@@ -19,6 +19,7 @@
 
   // Set up dependencies
   require __DIR__ . '/src/controller/publication.php';
+  require __DIR__ . '/src/controller/picture.php';
   require __DIR__ . '/src/dependencies.php';
 
   // Register middleware

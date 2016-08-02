@@ -16,6 +16,7 @@ class Publication
    * @var
    */
   private $table;
+
   /**
    * @var ContainerInterface $ci
    */
