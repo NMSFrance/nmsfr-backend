@@ -1,8 +1,6 @@
 <?php
 namespace src\controller;
 
-use Container;
-
 /**
  * Created by PhpStorm.
  * User: gay_k
@@ -15,10 +13,14 @@ class publication
    * @var
    */
   private $table;
+  /**
+   * @var ContainerInterface $ci
+   */
+  private $ci;
 
-  public function __construct()
+  public function __construct(ContainerInterface $ci)
   {
-    $container = new Container();
-    $this->table = $container->getContainer('db')->table('publication');
+    $this->ci = $ci;
+    $this->table = $this->get('db')->table('publication');
   }
 }
