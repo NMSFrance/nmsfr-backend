@@ -31,12 +31,8 @@ class Picture
   {
     $fileName = $args['filename'];
 
-    $image = file_get_contents($fileName, FILE_USE_INCLUDE_PATH);
+    $response->withHeader('Content-Type', 'content-type: image/png');
 
-    $fInfo = new finfo(FILEINFO_MIME_TYPE);
-
-    $response->withHeader('Content-Type', 'content-type: ' . $fInfo->buffer($image));
-
-    readfile($fileName, FILE_USE_INCLUDE_PATH);
+    echo '<img src="'.$_SERVER['HTTP_REFERER'].$this->picturePath.$fileName.'"/>';
   }
 }

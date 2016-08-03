@@ -7,4 +7,4 @@
  */
 
 // Show the picture from fileName
-$app->get('/picture/{fileName}', 'Picture:show');
+$app->get('/pictures/{filename}', 'Picture:show');
