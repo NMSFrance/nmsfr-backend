@@ -29,7 +29,7 @@ class Picture
 
   public function show(Request $request, Response $response, $args)
   {
-    $fileName = $args['fileName'];
+    $fileName = $args['filename'];
 
     $image = file_get_contents($fileName, FILE_USE_INCLUDE_PATH);
 
