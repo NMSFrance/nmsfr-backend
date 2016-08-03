@@ -32,8 +32,21 @@ class Publication
   {
     $id = $args['id'];
 
-    $publication = $this->table->find($id);
+    $publication = $this->table
+      ->leftJoin('file', 'publication.file', '=', 'file.id')
+      ->leftJoin('user', 'publication.id', '=', 'user.id')
+      ->where('publication.id', '=', $id)
+      ->get();
+
+    $publication['0']->file_url = $this->setPictureUrl($publication['0']->filename);
 
     return $response->withJson($publication);
+  }
+
+  public function setPictureUrl($filename)
+  {
+    $picture = new Picture($this->ci);
+
+    return $picture->getUrl($filename);
   }
 }

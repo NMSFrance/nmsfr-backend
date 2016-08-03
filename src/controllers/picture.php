@@ -35,4 +35,15 @@ class Picture
 
     echo '<img src="'.$_SERVER['HTTP_REFERER'].$this->picturePath.$fileName.'"/>';
   }
+
+  public function getUrl($filename)
+  {
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") {
+        $http = 'https';
+    } else {
+      $http = 'http';
+    }
+
+    return $http . '://' . $_SERVER['HTTP_HOST']. $this->picturePath . $filename;
+  }
 }
