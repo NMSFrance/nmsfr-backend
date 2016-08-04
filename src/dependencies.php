@@ -30,5 +30,9 @@ $container['db'] = function ($container) {
 
 $container['Publication'] = function($c) {
   return new \Publication($c);
+};
+
+$container['Picture'] = function($c) {
+  return new \Picture($c);
 }
 ?>

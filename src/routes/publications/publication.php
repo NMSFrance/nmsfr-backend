@@ -7,6 +7,6 @@
  */
 
 // Get the publication from ID
-$app->get('/publication/{id}', 'Publication:get');
+$app->get('/publications/{id}', 'Publication:get');
 
 ?>
