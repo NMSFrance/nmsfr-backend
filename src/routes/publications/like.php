@@ -8,6 +8,6 @@
  */
 
 // Auth Required Like Publication
-$app->post('/likes/', '');
+$app->post('/likes/{publicationId}', 'Like:like');
 // Auth Required Like Publication
-$app->delete('/likes/{userId}/{publicationId}', '');
+$app->delete('/likes/{userId}/{publicationId}', 'Like:dislike');

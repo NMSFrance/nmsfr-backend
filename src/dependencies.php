@@ -34,5 +34,9 @@ $container['Publication'] = function($c) {
 
 $container['Picture'] = function($c) {
   return new \Picture($c);
-}
+};
+
+$container['Like'] = function($c) {
+  return new \Like($c);
+};
 ?>
