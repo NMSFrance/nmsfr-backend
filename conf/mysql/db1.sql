@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `publication` (
   `title` varchar(35) NOT NULL,
   `description` varchar(250) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `author` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
@@ -87,8 +87,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(20) NOT NULL,
   `description` varchar(75) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
-  `_s` varchar(20) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `email` (`email`)
