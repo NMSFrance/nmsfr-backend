@@ -18,8 +18,10 @@
   $app = new \Slim\App($settings);
 
   // Set up dependencies
+  require __DIR__ . '/src/models/like.php';
   require __DIR__ . '/src/controllers/publication.php';
   require __DIR__ . '/src/controllers/picture.php';
+  require __DIR__ . '/src/controllers/like.php';
   require __DIR__ . '/src/dependencies.php';
 
   // Register middleware
