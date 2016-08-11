@@ -33,7 +33,7 @@ class Like {
         ->setUserId(1)
         ->save();
 
-       return json_encode($like);
+      return json_encode($like);
     }
 
     public function dislike( Request $request, Response $response, $args  ) {

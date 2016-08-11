@@ -2,12 +2,6 @@
 // DIC configuration
 $container = $app->getContainer();
 
-// view renderer
-$container['renderer'] = function ($c) {
-  $settings = $c->get('settings')['renderer'];
-  return new Slim\Views\PhpRenderer($settings['template_path']);
-};
-
 // monolog
 $container['logger'] = function ($c) {
   $settings = $c->get('settings')['logger'];
@@ -39,4 +33,8 @@ $container['Picture'] = function($c) {
 $container['Like'] = function($c) {
   return new \Like($c);
 };
+
+$container['User'] = function($c) {
+  return new \User($c);
+}
 ?>

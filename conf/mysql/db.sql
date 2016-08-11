@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 172.17.0.2:3306
--- Generation Time: Aug 01, 2016 at 07:29 PM
--- Server version: 5.5.50
+-- Generation Time: Aug 11, 2016 at 04:59 PM
+-- Server version: 5.7.13
 -- PHP Version: 5.6.9-1+deb.sury.org~trusty+2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,10 +29,11 @@ USE `nmsfrance`;
 --
 
 DROP TABLE IF EXISTS `file`;
-CREATE TABLE `file` (
+CREATE TABLE IF NOT EXISTS `file` (
   `id` varchar(50) NOT NULL,
   `filename` varchar(100) NOT NULL,
-  `enctype` varchar(20) NOT NULL
+  `enctype` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -42,11 +43,25 @@ CREATE TABLE `file` (
 --
 
 DROP TABLE IF EXISTS `like`;
-CREATE TABLE `like` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `like` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `publication_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `publication_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `publication_id` (`publication_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `like`
+--
+
+INSERT INTO `like` (`id`, `user_id`, `publication_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(5, 2, 1),
+(6, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -55,16 +70,27 @@ CREATE TABLE `like` (
 --
 
 DROP TABLE IF EXISTS `publication`;
-CREATE TABLE `publication` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `publication` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` enum('IMAGE','VIDEO_EMBED') NOT NULL,
   `file` varchar(50) DEFAULT NULL,
   `title` varchar(35) NOT NULL,
   `description` varchar(250) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_at` timestamp NULL DEFAULT NULL,
-  `author` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `author_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `author_id` (`author_id`),
+  KEY `file` (`file`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `publication`
+--
+
+INSERT INTO `publication` (`id`, `type`, `file`, `title`, `description`, `created_at`, `updated_at`, `author_id`) VALUES
+(1, 'IMAGE', NULL, '1231546', NULL, '2016-08-02 18:23:46', NULL, 1),
+(2, 'IMAGE', NULL, 'test1234', '4564', '2016-08-11 16:24:38', '2016-08-11 16:24:38', 1);
 
 -- --------------------------------------------------------
 
@@ -73,86 +99,25 @@ CREATE TABLE `publication` (
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `description` varchar(75) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
-  `_s` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `user`
 --
 
---
--- Indexes for table `file`
---
-ALTER TABLE `file`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `like`
---
-ALTER TABLE `like`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `publication_id` (`publication_id`);
-
---
--- Indexes for table `publication`
---
-ALTER TABLE `publication`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `author` (`author`),
-  ADD KEY `file` (`file`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `like`
---
-ALTER TABLE `like`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `publication`
---
-ALTER TABLE `publication`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `publication`
---
-ALTER TABLE `publication`
-  ADD CONSTRAINT `fk_like_publication` FOREIGN KEY (`id`) REFERENCES `like` (`publication_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_author` FOREIGN KEY (`author`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `fk_file` FOREIGN KEY (`file`) REFERENCES `file` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `fk_like_user` FOREIGN KEY (`id`) REFERENCES `like` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+INSERT INTO `user` (`id`, `name`, `email`, `description`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'kevout', 'kev@tes.com', '123456', '123456', '2016-08-02 16:36:58', '2016-08-11 16:10:47');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
