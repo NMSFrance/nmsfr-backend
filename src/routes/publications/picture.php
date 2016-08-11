@@ -8,3 +8,4 @@
 
 // Show the picture from fileName
 $app->get('/pictures/{filename}', 'Picture:show');
+$app->post('/pictures', 'Picture:upload');

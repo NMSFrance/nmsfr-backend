@@ -20,11 +20,9 @@ class User
 
   public function create(Request $request, Response $res, $args)
   {
-    $username = $request->getAttribute('name');
-    $password = $request->getAttribute('password');
-    $email = $request->getAttribute('email');
-
-    var_dump($request->getBody());
+    $username = $request->getParsedBody()['name'];
+    $password = $request->getParsedBody()['password'];
+    $email = $request->getParsedBody()['email'];
 
     $salt = uniqid(mt_rand(), true) . '@';
 
@@ -32,11 +30,36 @@ class User
 
     $user = new UserModel();
     $user->name = $username;
-    $user->password = $password;
+    $user->password = $cp;
     $user->email = $email;
     $user->_s = $salt;
     $user->save();
 
     return $res->withJson($user);
+  }
+
+  public function login(Request $request, Response $res, $args)
+  {
+    $username = $request->getParsedBody()['name'];
+    $email = $request->getParsedBody()['email'];
+    $password = $request->getParsedBody()['password'];
+
+    $login = (empty($username)) ? $email : $username;
+
+    $user = $this->table
+      ->where('users.name', '=', $login)
+      ->orWhere('users.email', '=', $login)
+      ->get();
+
+    if(hash_equals($user[0]->password, crypt($password, $user[0]->_s))) {
+      $token = array(
+        'iss' => $user[0]->id
+      );
+      $jwt = JWT::encode($token, $this->ci->get('settings')['secretKey']);
+      return $res->withJson(['token' => $jwt]);
+    }
+
+    // TODO : allo
+    return $res->withJson(['lol' => $user[0]->password, 'lel' => crypt($password, $user->_s)]);
   }
 }

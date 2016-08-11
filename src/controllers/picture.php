@@ -24,7 +24,7 @@ class Picture
   public function __construct(ContainerInterface $ci)
   {
     $this->ci = $ci;
-    $this->picturePath = $this->ci->get('settings')['picturePath'];
+    $this->publiFilePath = $this->ci->get('settings')['publiFilePath'];
   }
 
   public function show(Request $request, Response $response, $args)
@@ -36,10 +36,24 @@ class Picture
     echo '<img src="'.$_SERVER['HTTP_REFERER'].$this->picturePath.$fileName.'"/>';
   }
 
+  public function upload(Request $request, Response $res, $args)
+  {
+    $putdata = fopen('php://input', 'r');
+
+    $fp = fopen($this->publiFilePath.'myputfile.jpg', 'x');
+
+    $data = $request->getBody();
+
+    while ($data = fread($putdata, 1024)) fwrite($fp, $data);
+
+    fclose($fp);
+    fclose($putdata);
+  }
+
   public function getUrl($filename)
   {
-    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") {
-        $http = 'https';
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+      $http = 'https';
     } else {
       $http = 'http';
     }
