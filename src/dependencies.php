@@ -36,5 +36,10 @@ $container['Like'] = function($c) {
 
 $container['User'] = function($c) {
   return new \User($c);
-}
+};
+
+$container['File'] = function($c) {
+  return new \File($c);
+};
+
 ?>
