@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `publication` (
   `description` varchar(250) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `author` int(11) NOT NULL,
+  `author_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `author` (`author`),
+  KEY `author_id` (`author_id`),
   KEY `file` (`file`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `publication` (
 -- Dumping data for table `publication`
 --
 
-INSERT INTO `publication` (`id`, `type`, `file`, `title`, `description`, `created_at`, `update_at`, `author`) VALUES
-(1, 'IMAGE', NULL, '1231546', NULL, '2016-08-02 18:23:46', NULL, 1);
+INSERT INTO `publication` (`id`, `type`, `file`, `title`, `description`, `created_at`, `updated_at`, `author_id`) VALUES
+  (1, 'IMAGE', NULL, '1231546', NULL, '2016-08-02 18:23:46', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `description`, `password`, `_s`, `created_at`) VALUES
-(1, 'kevout', 'kev@tes.com', NULL, '123456', '123456', '2016-08-02 16:36:58');
+INSERT INTO `user` (`id`, `name`, `email`, `description`, `password`, `created_at`) VALUES
+  (1, 'kevout', 'kev@tes.com', '123456', '123456', '2016-08-02 16:36:58');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
