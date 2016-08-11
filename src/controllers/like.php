@@ -17,11 +17,6 @@ class Like {
      */
     private $ci;
 
-    /**
-     * @var string
-     */
-    private $picturePath;
-
     public function __construct( ContainerInterface $ci ) {
         $this->ci = $ci;
         $this->table = $this->ci->get('db')->table('like');
