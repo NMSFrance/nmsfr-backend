@@ -16,7 +16,7 @@ phpmyadmin:
   links:
     - database:mysql
 database:
-  image: mysql:latest
+  image: mysql:5.5
   ports:
     - "3306:3306"
   environment:
